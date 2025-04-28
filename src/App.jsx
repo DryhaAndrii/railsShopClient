@@ -1,11 +1,11 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import AuthPage from "./pages/authPage";
-import HomePage from "./pages/HomePage";
+import { BrowserRouter } from "react-router-dom";
 import Toaster from "./components/toaster/toaster";
 import useCheckAuth from "./hooks/useCheckAuth";
 import { LoadingProvider } from "./contexts/Loading.Context";
 import Loading from "./components/loading/loading";
+import Header from "./components/header/header";
+import RoutesMapper from "./routes/RoutesMapper";
 
 function App() {
   const isAuthenticated = useCheckAuth();
@@ -19,16 +19,8 @@ function App() {
       <BrowserRouter>
         <LoadingProvider>
           <Toaster />
-          <Routes>
-            <Route
-              path="/auth"
-              element={isAuthenticated ? <Navigate to="/" /> : <AuthPage />}
-            />
-            <Route
-              path="/"
-              element={isAuthenticated ? <HomePage /> : <Navigate to="/auth" />}
-            />
-          </Routes>
+          <Header />
+          <RoutesMapper isAuthenticated={isAuthenticated} />
         </LoadingProvider>
       </BrowserRouter>
     </div>
