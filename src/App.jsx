@@ -20,7 +20,9 @@ function App() {
         <LoadingProvider>
           <Toaster />
           <Header />
-          <RoutesMapper isAuthenticated={isAuthenticated} />
+          <div className="container">
+            <RoutesMapper isAuthenticated={isAuthenticated} />
+          </div>
         </LoadingProvider>
       </BrowserRouter>
     </div>

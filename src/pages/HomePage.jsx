@@ -1,8 +1,16 @@
+import { useState } from "react";
+import ProductList from "../components/productList/productList";
+import Pagination from "../components/pagination/pagination";
+import Search from "../components/search/search";
 
 export default function HomePage() {
-    return (
-        <div style={{ height: "100%", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <h1>Home page</h1>
-        </div>
-    );
-  }
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  return (
+    <>
+      <Search />
+      <ProductList page={page} setHasMore={setHasMore} />
+      <Pagination page={page} setPage={setPage} hasMore={hasMore} />
+    </>
+  );
+}

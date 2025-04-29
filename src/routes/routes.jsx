@@ -3,6 +3,7 @@ import HomePage from "../pages/HomePage";
 import UsersPage from "../pages/UsersPage";
 import ItemsPage from "../pages/ItemsPage";
 import AuthPage from "../pages/AuthPage";
+import CartPage from "../pages/CartPage/CartPage";
 
 export const routes = [
   {
@@ -23,6 +24,10 @@ export const routes = [
   {
     path: "/items",
     element: <ItemsPage />,
+    private: true,
+  },{
+    path: "/cart",
+    element: <CartPage />,
     private: true,
   },
 ];

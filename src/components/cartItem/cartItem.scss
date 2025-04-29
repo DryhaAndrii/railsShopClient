@@ -1,0 +1,17 @@
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px 0px #00000045;
+  span {
+    font-size: 16px;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}

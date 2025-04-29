@@ -8,6 +8,7 @@ export default function RoutesMapper({ isAuthenticated }) {
   const renderRouteElement = (route) => {
     const { element, private: isPrivate, path } = route;
 
+    
     if (!isAuthenticated) return path === "/auth" ? element : <Navigate to="/auth" />;
 
     if (isAuthenticated) return path === "/auth" ? <Navigate to="/" /> : element;

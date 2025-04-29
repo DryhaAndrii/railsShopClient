@@ -1,15 +1,10 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-  Link as MuiLink,
-} from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import { useLocation, Link } from "react-router-dom";
-
+import LogoutIcon from "@mui/icons-material/Logout";
 import "./header.scss";
+import HamburgerMenu from "../hamburgerMenu/hamburgerMenu";
+import HeaderLinks from "./headerLinks";
 
 export default function Header() {
   const location = useLocation();
@@ -31,35 +26,12 @@ export default function Header() {
         </Typography>
 
         <Box className="nav-links">
-          {user?.role === "admin" && (
-            <>
-              <MuiLink
-                component={Link}
-                to="/items"
-                color="inherit"
-                underline="none"
-                className="nav-link"
-              >
-                Items
-              </MuiLink>
-              <MuiLink
-                component={Link}
-                to="/users"
-                color="inherit"
-                underline="none"
-                className="nav-link"
-              >
-                Users
-              </MuiLink>
-            </>
-          )}
-          <Button
-            color="inherit"
-            onClick={handleLogout}
-            className="logout-button"
-          >
-            Logout
-          </Button>
+          <HamburgerMenu>
+            <Button endIcon={<LogoutIcon />} onClick={handleLogout} variant="contained">
+              Logout
+            </Button>
+            <HeaderLinks user={user} />
+          </HamburgerMenu>
         </Box>
       </Toolbar>
     </AppBar>

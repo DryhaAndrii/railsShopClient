@@ -23,7 +23,6 @@ export default function useCheckAuth() {
         });
 
         const data = await response.json();
-        console.log("CheckAuth:", data);
 
         
         if (response.ok && data.valid) {

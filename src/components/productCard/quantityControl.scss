@@ -1,0 +1,19 @@
+.quantity-control {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+
+  input {
+    width: 20px;
+    text-align: center;
+    // Delete arrows in Chrome, Safari, Edge
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    // Delete arrows in Firefox
+    -moz-appearance: textfield;
+  }
+}
