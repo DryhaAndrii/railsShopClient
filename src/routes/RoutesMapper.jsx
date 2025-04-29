@@ -8,16 +8,23 @@ export default function RoutesMapper({ isAuthenticated }) {
   const renderRouteElement = (route) => {
     const { element, private: isPrivate, path } = route;
 
-    
-    if (!isAuthenticated) return path === "/auth" ? element : <Navigate to="/auth" />;
+    // Если неавторизован — пускаем только на /auth
+    if (!isAuthenticated) {
+      return path === "/auth" ? element : <Navigate to="/auth" />;
+    }
 
-    if (isAuthenticated) return path === "/auth" ? <Navigate to="/" /> : element;
+    // Если авторизован, но это /auth — редиректим на главную
+    if (isAuthenticated && path === "/auth") {
+      return <Navigate to="/" />;
+    }
 
-    if (user?.role === "admin") return element;
+    // Если путь требует админ-прав
+    const adminOnlyPaths = ["/users", "/items"];
+    if (adminOnlyPaths.includes(path) && user?.role !== "admin") {
+      return <Navigate to="/" />;
+    }
 
-    if (path === "/") return element;
-
-    return <Navigate to="/" />;
+    return element;
   };
 
   return (
