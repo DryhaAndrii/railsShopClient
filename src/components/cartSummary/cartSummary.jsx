@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import "./CartSummary.scss";
+import "./cartSummary.scss";
 import { Button } from "@mui/material";
 
 export default function CartSummary({ cart }) {
