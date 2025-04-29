@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./ProductList.scss";
+import "./productList.scss";
 import { useEndpoints } from "../../endpoints";
 import ProductCard from "../productCard/productCard";
 
