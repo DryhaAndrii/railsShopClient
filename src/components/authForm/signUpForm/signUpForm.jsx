@@ -102,6 +102,7 @@ export default function SignUpForm() {
       toast.success(data.status.message);
     } catch (error) {
       console.error(error);
+      toast.error("Server error:",error);
     } finally {
       hideLoading();
     }

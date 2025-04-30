@@ -6,5 +6,7 @@ export function useEndpoints() {
     checkTokenEndpoint: `${apiUrl}/api/v1/validate_token`,
     getAllItemsEndpoint: `${apiUrl}/api/v1/items`,
     searchItemEndpoint: `${apiUrl}/api/v1/items/search`,
+    placeOrderEndpoint:`${apiUrl}/api/v1/orders`,
+    getOrdersEndpoint:`${apiUrl}/api/v1/orders`,
   };
 }

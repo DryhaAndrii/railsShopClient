@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useEndpoints } from "../endpoints";
+import toast from "react-hot-toast";
 
 export default function useCheckAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -24,7 +25,6 @@ export default function useCheckAuth() {
 
         const data = await response.json();
 
-        
         if (response.ok && data.valid) {
           setIsAuthenticated(true);
         } else {
@@ -34,8 +34,7 @@ export default function useCheckAuth() {
         }
       } catch (error) {
         console.error("Error during authentication check:", error);
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("user");
+        toast.error("Server error during authentication check:", error);
         setIsAuthenticated(false);
       }
     };

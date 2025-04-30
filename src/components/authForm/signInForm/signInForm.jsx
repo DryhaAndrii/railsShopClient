@@ -55,7 +55,7 @@ export default function SignInForm() {
       if (!response.ok) {
         const data = await response.text();
         toast.error(data);
-        throw new Error("Registration error");
+        throw new Error("Login error");
       }
 
       const data = await response.json();
@@ -69,6 +69,7 @@ export default function SignInForm() {
       
     } catch (error) {
       console.error(error);
+      if(error.message !== "Login error") toast.error(error.message);
     } finally {
       hideLoading();
     }
