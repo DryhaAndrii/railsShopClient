@@ -5,6 +5,7 @@ import ItemsPage from "../pages/ItemsPage";
 import AuthPage from "../pages/AuthPage";
 import CartPage from "../pages/CartPage/CartPage";
 import OrdersPage from "../pages/OrdersPage/OrdersPage";
+import UserPage from "../pages/UserPage";
 
 export const routes = [
   {
@@ -33,6 +34,10 @@ export const routes = [
   },{
     path: "/orders",
     element: <OrdersPage />,
+    private: true,
+  },{
+    path: "/user",
+    element: <UserPage />,
     private: true,
   },
 ];

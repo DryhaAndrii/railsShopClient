@@ -5,11 +5,11 @@ import { useEndpoints } from "../../endpoints";
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
-  const { getOrdersEndpoint } = useEndpoints();
+  const { ordersEndpoint } = useEndpoints();
   useEffect(() => {
     const fetchOrders = async () => {
       const token = localStorage.getItem("authToken");
-      const response = await fetch(getOrdersEndpoint, {
+      const response = await fetch(ordersEndpoint, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

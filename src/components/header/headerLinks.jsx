@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import CategoryIcon from "@mui/icons-material/Category";
 import GroupIcon from "@mui/icons-material/Group";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PersonIcon from '@mui/icons-material/Person';
 
 
 export default function HeaderLinks({ user }) {
@@ -19,6 +20,9 @@ export default function HeaderLinks({ user }) {
       </Button>
       <Button endIcon={<CategoryIcon />} href="/orders" variant="contained">
         Orders
+      </Button>
+      <Button endIcon={<PersonIcon />} href="/user" variant="contained">
+        Edit profile
       </Button>
     </>
   );

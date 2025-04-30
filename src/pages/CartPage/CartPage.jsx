@@ -27,7 +27,7 @@ export default function CartPage() {
           <p>Your cart is empty.</p>
         )}
       </div>
-      <CartSummary cart={cart} />
+      <CartSummary cart={cart} cartUpdate={cartUpdate}/>
     </div>
   );
 }

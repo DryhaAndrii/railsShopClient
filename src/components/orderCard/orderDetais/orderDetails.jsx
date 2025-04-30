@@ -2,7 +2,6 @@ import { List, ListItem, ListItemText } from "@mui/material";
 import "./orderDetails.scss";
 
 export default function OrderDetails({ items = [], description = [] }) {
-  console.log(description);
   return (
     <List className="order-details">
       {items.map((item, index) => (

@@ -3,8 +3,8 @@ import "./cartSummary.scss";
 import { Button } from "@mui/material";
 import { useEndpoints } from "../../endpoints";
 
-export default function CartSummary({ cart }) {
-  const { placeOrderEndpoint } = useEndpoints();
+export default function CartSummary({ cart,cartUpdate }) {
+  const { ordersEndpoint } = useEndpoints();
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   async function placeOrder() {
@@ -16,7 +16,7 @@ export default function CartSummary({ cart }) {
         quantity: item.quantity,
       }));
 
-      const response = await fetch(placeOrderEndpoint, {
+      const response = await fetch(ordersEndpoint, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -35,8 +35,9 @@ export default function CartSummary({ cart }) {
         "The order has been placed! You can see it on the order page."
       );
 
-      // optionally clear cart
-      //localStorage.removeItem("cart");
+      //clear cart
+      localStorage.removeItem("cart");
+      cartUpdate();
     } catch (error) {
       toast.error(`Error: ${error.message}`);
       console.error("Order error:", error);
