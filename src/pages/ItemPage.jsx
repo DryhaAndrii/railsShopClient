@@ -78,6 +78,8 @@ export default function ItemPage() {
         throw new Error("Item deleting error");
       }
       toast.success("Item deleted");
+      window.location.href = "/";
+      
     } catch (error) {
       console.error("Item deleting error", error);
     } finally {

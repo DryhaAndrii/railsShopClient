@@ -13,8 +13,8 @@ export function checkInputValue(value, name) {
       return "Price should be a valid number";
     }
 
-    if (num < 0) {
-      return "Price should not be negative";
+    if (num < 1) {
+      return "Price should be greater than 0";
     }
 
     if (/e|\+|\-/.test(value)) {

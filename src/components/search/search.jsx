@@ -27,7 +27,9 @@ export default function Search() {
         Authorization: `Bearer ${token}`,
       },
     });
-    const data = await response.json();
+    let data = await response.json();
+
+    data = data.filter((item)=>!item.deleted)
 
     if (data.length === 0) toast.error("No items found");
     setItems(data);
@@ -47,7 +49,7 @@ export default function Search() {
         </div>
       )}
       <Button color="primary" variant="contained" onClick={clear}>
-        Clear
+        Hide
       </Button>
     </div>
   );

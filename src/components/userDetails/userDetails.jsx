@@ -5,13 +5,13 @@ import Form from "../form/form";
 export default function UserDetails({ onSubmit, editByAdmin }) {
   const fields = [
     {
-      name: "firstName",
+      name: "first_name",
       label: "First Name",
       component: TextField,
       fullWidth: true,
     },
     {
-      name: "lastName",
+      name: "last_name",
       label: "Last Name",
       component: TextField,
       fullWidth: true,
