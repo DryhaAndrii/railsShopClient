@@ -19,7 +19,7 @@ export default function RoutesMapper({ isAuthenticated }) {
     }
 
     // If path requires admin access
-    const adminOnlyPaths = ["/users", "/items","/itemAdd"];
+    const adminOnlyPaths = ["/users", "/item","/itemAdd"];
     if (adminOnlyPaths.includes(path) && user?.role !== "admin") {
       return <Navigate to="/" />;
     }

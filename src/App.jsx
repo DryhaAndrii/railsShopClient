@@ -6,6 +6,8 @@ import { LoadingProvider } from "./contexts/Loading.Context";
 import Loading from "./components/loading/loading";
 import Header from "./components/header/header";
 import RoutesMapper from "./routes/RoutesMapper";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
 
 function App() {
   const isAuthenticated = useCheckAuth();
@@ -18,11 +20,13 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <LoadingProvider>
-          <Toaster />
-          <Header />
-          <div className="container">
-            <RoutesMapper isAuthenticated={isAuthenticated} />
-          </div>
+          <ThemeProvider theme={theme}>
+            <Toaster />
+            <Header />
+            <div className="container">
+              <RoutesMapper isAuthenticated={isAuthenticated} />
+            </div>
+          </ThemeProvider>
         </LoadingProvider>
       </BrowserRouter>
     </div>

@@ -6,7 +6,7 @@ import AuthPage from "../pages/AuthPage";
 import CartPage from "../pages/CartPage/CartPage";
 import OrdersPage from "../pages/OrdersPage/OrdersPage";
 import UserPage from "../pages/UserPage";
-import ItemAddPage from "../pages/ItemAddPage";
+import ItemPage from "../pages/ItemPage";
 
 export const routes = [
   {
@@ -48,7 +48,12 @@ export const routes = [
   },
   {
     path: "/itemAdd",
-    element: <ItemAddPage />,
+    element: <ItemPage />,
+    private: true,
+  },
+  {
+    path: "/item",
+    element: <ItemPage />,
     private: true,
   },
 ];

@@ -35,9 +35,7 @@ export default function ProductCard({ item }) {
           <Typography variant="body2" gutterBottom>
             {item.description}
           </Typography>
-          <Typography variant="body2">
-            {item.price}$
-          </Typography>
+          <Typography variant="body2">{item.price}$</Typography>
           <QuantityControl setQuantity={setQuantity} quantity={quantity} />
 
           <Button
@@ -54,7 +52,7 @@ export default function ProductCard({ item }) {
               variant="contained"
               color="primary"
               fullWidth
-              href={`/items/${item.id}`}
+              href={`/item?id=${item.id}&name=${item.name}&description=${item.description}&price=${item.price}`}
               startIcon={<EditIcon />}
             >
               Edit

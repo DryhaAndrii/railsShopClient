@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import UserList from "../components/userList/userList";
+import { useEndpoints } from "../endpoints";
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
-
+  const { usersEndpoint } = useEndpoints();
   useEffect(() => {
     const fetchUsers = async () => {
       const token = localStorage.getItem("authToken");
-      const res = await fetch("http://localhost:3000/api/v1/users", {
+      const res = await fetch(usersEndpoint, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -17,10 +18,5 @@ export default function UsersPage() {
     fetchUsers();
   }, []);
 
-  return (
-    <div className="users-page">
-      <h1>Users Page</h1>
-      <UserList users={users} />
-    </div>
-  );
+  return <UserList users={users} />;
 }
