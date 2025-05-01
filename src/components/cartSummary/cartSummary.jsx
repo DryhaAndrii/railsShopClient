@@ -2,13 +2,16 @@ import toast from "react-hot-toast";
 import "./cartSummary.scss";
 import { Button } from "@mui/material";
 import { useEndpoints } from "../../endpoints";
+import { useLoading } from "../../contexts/Loading.Context";
 
 export default function CartSummary({ cart,cartUpdate }) {
   const { ordersEndpoint } = useEndpoints();
+  const { showLoading, hideLoading } = useLoading();
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   async function placeOrder() {
     try {
+      showLoading();
       const token = localStorage.getItem("authToken");
 
       const items = cart.map((item) => ({
@@ -41,6 +44,8 @@ export default function CartSummary({ cart,cartUpdate }) {
     } catch (error) {
       toast.error(`Error: ${error.message}`);
       console.error("Order error:", error);
+    } finally {
+      hideLoading();
     }
   }
 

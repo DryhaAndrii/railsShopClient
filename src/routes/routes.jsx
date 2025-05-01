@@ -6,6 +6,7 @@ import AuthPage from "../pages/AuthPage";
 import CartPage from "../pages/CartPage/CartPage";
 import OrdersPage from "../pages/OrdersPage/OrdersPage";
 import UserPage from "../pages/UserPage";
+import ItemAddPage from "../pages/ItemAddPage";
 
 export const routes = [
   {
@@ -38,6 +39,16 @@ export const routes = [
   },{
     path: "/user",
     element: <UserPage />,
+    private: true,
+  },
+  {
+    path: "/users/:id",
+    element: <UserPage />,
+    private: true,
+  },
+  {
+    path: "/itemAdd",
+    element: <ItemAddPage />,
     private: true,
   },
 ];

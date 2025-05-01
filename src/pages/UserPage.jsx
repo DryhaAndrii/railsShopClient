@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
 import UserDetails from "../components/userDetails/userDetails";
 import { checkInputValue } from "../functions/checkInputValue";
 import toast from "react-hot-toast";
 import { useEndpoints } from "../endpoints";
+import { useParams } from "react-router-dom";
+import { useLoading } from "../contexts/Loading.Context";
 
 export default function UserPage() {
   const { usersEndpoint } = useEndpoints();
-  const userId = JSON.parse(localStorage.getItem("user")).id;
+  const { showLoading, hideLoading } = useLoading();
+  const { id } = useParams();
+  const userId = id || JSON.parse(localStorage.getItem("user")).id;
 
   async function handleUserUpdate(data) {
     const filteredUserData = Object.fromEntries(
@@ -31,15 +34,23 @@ export default function UserPage() {
       return toast.error("Passwords do not match");
     }
 
+    if (
+      filteredUserData.role &&
+      filteredUserData.role !== "admin" &&
+      filteredUserData.role !== "user"
+    ) {
+      return toast.error("Role can be only admin or user");
+    }
+
     const token = localStorage.getItem("authToken");
 
     const body = JSON.stringify({
       user: filteredUserData,
     });
 
-
     const url = `${usersEndpoint}/${userId}`;
-    try{
+    try {
+      showLoading();
       const response = await fetch(url, {
         method: "PUT",
         headers: {
@@ -48,20 +59,23 @@ export default function UserPage() {
         },
         body,
       });
-  
+
       const responseData = await response.json();
-      
-      if(responseData.errors){
+
+      if (responseData.errors) {
         throw new Error(responseData.errors[0]);
       }
 
       toast.success(responseData.message);
-    } catch(error){
+    } catch (error) {
       toast.error(error.message);
       console.log(error);
+    } finally {
+      hideLoading();
     }
-    
   }
 
-  return <UserDetails onSubmit={handleUserUpdate} />;
+  return (
+    <UserDetails onSubmit={handleUserUpdate} editByAdmin={id ? true : false} />
+  );
 }

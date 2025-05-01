@@ -2,7 +2,7 @@ import { TextField } from "@mui/material";
 import "./userDetails.scss";
 import Form from "../form/form";
 
-export default function UserDetails({ onSubmit }) {
+export default function UserDetails({ onSubmit, editByAdmin }) {
   const fields = [
     {
       name: "firstName",
@@ -38,6 +38,16 @@ export default function UserDetails({ onSubmit }) {
       fullWidth: true,
     },
   ];
+
+  if (editByAdmin) {
+    const userRoleInput = {
+      name: "role",
+      label: "User role",
+      component: TextField,
+      fullWidth: true,
+    };
+    fields.push(userRoleInput);
+  }
 
   return (
     <div className="user-details">
